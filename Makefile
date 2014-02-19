@@ -1,11 +1,12 @@
 .phony: all clean
 
+NAME="stash-commit-graph-reader"
 
 all: 
-	ghc -Wall -Werror --make -O2 index-file-reader.hs
-	strip index-file-reader
-	upx index-file-reader
+	ghc -Wall -Werror --make -O2 ${NAME}.hs
+	strip ${NAME}
+	upx ${NAME}
 
 clean:
-	rm -f index-file-reader.{hi,o}
-	rm -f index-file-reader
+	rm -f ${NAME}.{hi,o}
+	rm -f ${NAME}
