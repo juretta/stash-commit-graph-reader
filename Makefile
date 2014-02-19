@@ -7,5 +7,5 @@ all:
 	upx index-file-reader
 
 clean:
-	rm index-file-reader.{hi,o}
-	rm index-file-reader
+	rm -f index-file-reader.{hi,o}
+	rm -f index-file-reader
