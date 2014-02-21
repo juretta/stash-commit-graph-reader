@@ -1,22 +1,23 @@
 .phony: all clean dist
 
 NAME="stash-commit-graph-reader"
-VERSION="0.2"
+VERSION="0.3"
+BIN="dist/build/stash-commit-graph-reader/stash-commit-graph-reader"
 BINARY="${NAME}-${VERSION}.tar.gz"
 
 all: 
-	ghc -Wall -Werror --make -O2 ${NAME}.hs
-	strip ${NAME}
-	upx ${NAME}
+	cabal clean
+	cabal build
+	strip ${BIN}
+	upx ${BIN}
 
 dist: all
-	mkdir -p dist/${NAME}/bin
-	cp ${NAME} dist/${NAME}/bin
-	tar -C dist -czf ${BINARY} ${NAME}
+	mkdir -p build/${NAME}/bin
+	cp ${BIN} build/${NAME}/bin
+	tar -C build -czf ${BINARY} ${NAME}
 	sha1sum ${BINARY}
 
 clean:
-	rm -f ${NAME}.{hi,o}
-	rm -f ${NAME}
-	rm -rf dist
+	cabal clean
+	rm -rf build
 	rm -f ${NAME}*.tar.gz
